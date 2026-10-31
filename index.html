@@ -7,18 +7,19 @@
   <title>Happy Birthday</title>
   <style>
     @font-face {
-      font-family: "M PLUS Rounded 1c";
-      src: url("assets/m-plus-rounded-1c.ttf") format("truetype");
+      font-family: "Smiley Sans";
+      src: url("assets/smiley-sans.woff2") format("woff2");
       font-display: swap;
     }
 
     :root {
       color-scheme: light;
-      --ink: #332d27;
-      --paper: #f7f1e5;
-      --wine: #762c32;
-      --serif: "M PLUS Rounded 1c", "Hiragino Maru Gothic ProN", "PingFang SC", sans-serif;
-      --sans: "M PLUS Rounded 1c", "Hiragino Maru Gothic ProN", "PingFang SC", sans-serif;
+      --ink: #44343c;
+      --paper: #fff9f0;
+      --wine: #873d56;
+      --rose: #ce8296;
+      --serif: "Smiley Sans", "Hiragino Maru Gothic ProN", "PingFang SC", sans-serif;
+      --sans: "Smiley Sans", "Hiragino Maru Gothic ProN", "PingFang SC", sans-serif;
     }
 
     * { box-sizing: border-box; }
@@ -29,9 +30,10 @@
       margin: 0;
       color: var(--ink);
       background:
-        radial-gradient(ellipse at 18% 8%, rgba(255,255,255,.82), transparent 36%),
-        radial-gradient(ellipse at 86% 78%, rgba(219,201,170,.25), transparent 34%),
-        #eee8dd;
+        radial-gradient(ellipse at 12% 10%, rgba(255,255,255,.9), transparent 34%),
+        radial-gradient(ellipse at 86% 24%, rgba(230,194,214,.34), transparent 31%),
+        radial-gradient(ellipse at 78% 88%, rgba(250,220,192,.35), transparent 33%),
+        #f2e9e9;
       font-family: var(--sans);
     }
 
@@ -73,7 +75,7 @@
       aspect-ratio: 1.53;
       min-height: 400px;
       perspective: 1800px;
-      filter: drop-shadow(0 26px 28px rgba(62, 47, 31, .19));
+      filter: drop-shadow(0 28px 32px rgba(100, 58, 73, .19));
     }
 
     .cover {
@@ -95,8 +97,8 @@
       border-radius: 5px 12px 12px 5px;
       background:
         linear-gradient(90deg, rgba(255,255,255,.06), transparent 5%, transparent 94%, rgba(0,0,0,.13)),
-        radial-gradient(ellipse at 48% 42%, #853b3d 0%, #762e33 48%, #64252d 100%);
-      box-shadow: inset 7px 0 10px rgba(30, 12, 14, .16), inset 0 0 0 1px rgba(224, 190, 123, .22);
+        radial-gradient(ellipse at 48% 42%, #945064 0%, #78384e 50%, #622d43 100%);
+      box-shadow: inset 7px 0 10px rgba(30, 12, 14, .16), inset 0 0 0 1px rgba(239, 207, 159, .25);
       transition: opacity .55s ease, transform .7s cubic-bezier(.2,.8,.2,1), visibility .55s;
     }
 
@@ -117,27 +119,16 @@
     .cover-emblem {
       position: relative;
       z-index: 1;
-      width: 108px;
-      height: 108px;
-      margin: 0 0 19px;
+      width: 126px;
+      height: 138px;
+      margin: 0 0 13px;
       display: grid;
       place-items: center;
-      border: 1px solid rgba(224, 193, 133, .78);
-      border-radius: 50%;
-      box-shadow: 0 0 0 5px rgba(224, 193, 133, .08), inset 0 0 16px rgba(224, 193, 133, .08);
-    }
-
-    .cover-emblem::before {
-      position: absolute;
-      inset: 5px;
-      content: "";
-      border: 1px solid rgba(224, 193, 133, .42);
-      border-radius: 50%;
     }
 
     .cover-emblem svg {
-      width: 66px;
-      height: 66px;
+      width: 100%;
+      height: 100%;
       fill: none;
       stroke: #e9cd94;
       stroke-linecap: round;
@@ -204,8 +195,8 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       overflow: hidden;
-      border: 1px solid #c8baa3;
-      border-radius: 6px;
+      border: 1px solid #d5bdba;
+      border-radius: 12px;
       background: var(--paper);
       opacity: 0;
       visibility: hidden;
@@ -258,6 +249,13 @@
       font-weight: 500;
     }
 
+    .dedication::after {
+      margin-left: 7px;
+      color: var(--rose);
+      content: "✿";
+      font-size: .72em;
+    }
+
     .name-input {
       width: 100%;
       max-width: 260px;
@@ -277,10 +275,10 @@
 
     .card-message {
       width: 100%;
-      min-height: 190px;
+      min-height: 580px;
       flex: 1;
       margin: 20px 0 0;
-      padding: 8px 0;
+      padding: 2px 0;
       resize: none;
       border: 0;
       outline: none;
@@ -288,13 +286,13 @@
       background: repeating-linear-gradient(
         to bottom,
         transparent 0,
-        transparent calc(2em - 1px),
-        rgba(159, 139, 111, .24) calc(2em - 1px),
-        rgba(159, 139, 111, .24) 2em
+        transparent calc(1.4em - 1px),
+        rgba(159, 139, 111, .24) calc(1.4em - 1px),
+        rgba(159, 139, 111, .24) 1.4em
       );
       font-family: var(--serif);
-      font-size: 16px;
-      line-height: 2;
+      font-size: 17px;
+      line-height: 1.4;
     }
 
     .card-message::placeholder { color: #b6a58e; }
@@ -332,9 +330,10 @@
       min-height: 0;
       overflow: hidden;
       padding: 6px;
-      border: 1px solid #d8cbb6;
-      background: #fffaf1;
-      box-shadow: 0 3px 8px rgba(72, 53, 32, .10);
+      border: 1px solid #ead8d0;
+      border-radius: 4px;
+      background: #fffdf8;
+      box-shadow: 0 5px 14px rgba(94, 62, 69, .12);
     }
 
     .scene-photo {
@@ -342,7 +341,7 @@
       height: 100%;
       display: block;
       object-fit: cover;
-      filter: saturate(.88) contrast(.96);
+      filter: saturate(.94) contrast(.97);
       background: #d7c8b0;
     }
 
@@ -369,11 +368,11 @@
       display: grid;
       place-items: center;
       padding: 0;
-      border: 1px solid #ddc6ae;
+      border: 1px solid #e3c2c1;
       border-radius: 50%;
-      color: #5d5044;
-      background: rgba(255, 250, 241, .92);
-      box-shadow: 0 3px 10px rgba(72, 53, 32, .12);
+      color: #754d5c;
+      background: rgba(255, 249, 246, .96);
+      box-shadow: 0 4px 12px rgba(94, 62, 69, .14);
       font-size: 28px;
       line-height: 1;
       cursor: pointer;
@@ -382,9 +381,9 @@
     }
 
     .nav-button:hover:not(:disabled) {
-      border-color: #c49372;
-      background: #fffdf8;
-      box-shadow: 0 5px 13px rgba(72, 53, 32, .18);
+      border-color: #cf8296;
+      background: #fff;
+      box-shadow: 0 6px 15px rgba(94, 62, 69, .2);
       transform: translateY(calc(-50% - 2px));
     }
 
@@ -399,6 +398,14 @@
     .nav-button:disabled {
       opacity: .45;
       cursor: not-allowed;
+    }
+
+    .photo-status {
+      min-height: 1em;
+      margin: 0;
+      color: #887b6d;
+      font-size: 13px;
+      text-align: center;
     }
 
     @media (max-width: 700px) {
@@ -430,12 +437,16 @@
       .spread::after { display: none; }
       .left-page { min-height: 320px; padding: 25px 24px 22px; }
       .dedication { margin-top: 12px; }
-      .card-message { margin-top: 12px; }
+      .card-message { min-height: 640px; margin-top: 12px; }
       .right-page { min-height: 370px; padding: 22px 20px 19px; }
       .photo-frame { min-height: 245px; }
       .book { width: 100%; }
       .nav-button { left: 0; }
       .next-button { right: 0; left: auto; }
+    }
+
+    @media (max-width: 400px) {
+      .card-message { min-height: 860px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -457,11 +468,14 @@
           <section class="book" id="book" aria-label="日本旅行护照">
             <div class="cover" aria-label="旅行护照封面">
               <div class="cover-emblem" aria-hidden="true">
-                <svg viewBox="0 0 64 64">
-                  <path d="M32 10 36 26 48 16 38 28 54 32 38 36 48 48 36 38 32 54 28 38 16 48 26 36 10 32 26 28 16 16 28 26Z"/>
-                  <circle cx="32" cy="32" r="3.5"/>
-                  <circle cx="32" cy="32" r="19"/>
-                  <path d="M32 5v4m0 46v4M5 32h4m46 0h4"/>
+                <svg viewBox="0 0 120 132">
+                  <path d="m43 27 3-12 10 10 4-18 5 18 10-10 3 12c-7-2-14-3-18-3s-11 1-17 3Z"/>
+                  <path d="M42 29c5 3 11 4 18 4s13-1 18-4l-2 5c-5 3-10 4-16 4s-11-1-16-4Z"/>
+                  <path d="M60 39c12 7 24 11 39 12v30c0 20-16 35-39 48C37 116 21 101 21 81V51c15-1 27-5 39-12Z"/>
+                  <path d="M60 45c11 6 22 10 33 11v25c0 17-13 30-33 42-20-12-33-25-33-42V56c11-1 22-5 33-11Z" opacity=".58"/>
+                  <path d="M17 51c-8-4-10-12-6-18 4-6 13-6 17 0 3 5 0 11-5 11-4 0-5-5-2-7m82 14c8-4 10-12 6-18-4-6-13-6-17 0-3 5 0 11 5 11 4 0 5-5 2-7"/>
+                  <path d="M17 51c-6 8-7 17-3 25m89-25c6 8 7 17 3 25M15 76l-7-5m97 5 7-5M60 7v5"/>
+                  <text x="60" y="98" text-anchor="middle" fill="#e9cd94" stroke="none" font-family="Georgia, 'Times New Roman', serif" font-size="57" font-style="italic">L</text>
                 </svg>
               </div>
               <p class="cover-country">LIA第二支部</p>
@@ -477,8 +491,31 @@
             <div class="spread" aria-live="polite">
               <section class="paper left-page" aria-label="生日贺卡">
                 <h2 class="dedication">写给</h2>
-                <input class="name-input" id="friend-name" type="text" maxlength="24" placeholder="亲爱的你" aria-label="收礼人的名字">
-                <textarea class="card-message" id="birthday-message" maxlength="1000" aria-label="生日祝福" placeholder="在这里写下生日祝福……">生日快乐！愿新的一岁里，你喜欢的事都有回响，想去的地方都能抵达。愿每一天都有小小的惊喜，也一直被温柔与爱包围。出发去看世界吧，下一站我们一起去！</textarea>
+                <input class="name-input" id="friend-name" type="text" maxlength="24" placeholder="亲爱的璐璐姐" aria-label="收礼人的名字">
+                <textarea class="card-message" id="birthday-message" maxlength="1000" aria-label="生日祝福" placeholder="在这里写下生日祝福……">
+22岁生日快乐！！🎂
+
+LIA第二支部不知不觉已经1200多天啦！
+这一年，我们一起走过了绍兴和宁波：
+老外滩，鲁迅故里，天一阁...
+一路风景，一路欢笑。
+最怀念的还是711采购和在民宿的夜晚
+喝酒、看电影、UNO和寂静中的呐喊，
+想起来又觉得特别爽了🃏🍻
+
+高中一晃已经到了大四
+祝贺你开启研究生的人生新阶段吖🎓
+希望你专心科研❓，在北航的学业继续顺利！✨
+说了好久的日本之行不知何时能实现🇯🇵
+于是先给你准备了护照👉
+很有创意吧哈哈！🤔
+srds第一次出国一定要和我们一起耶✈️
+下一站会是哪里呢？一起期待吧！😚
+
+再一次祝你生日快乐！🎁
+
+From Louis
+2025.11.1</textarea>
               </section>
               <section class="paper right-page" aria-label="目的地风景">
                 <div class="scene-head">
@@ -492,6 +529,7 @@
           </section>
           <button class="nav-button next-button" id="next-button" type="button" aria-label="打开护照">›</button>
         </div>
+        <p class="photo-status" id="photo-status" role="status" aria-live="polite"></p>
       </div>
     </main>
 
@@ -506,39 +544,39 @@
         position: "center"
       },
       {
-        title: "TOKYO",
+        title: "东京",
         image: "assets/tokyo.jpg",
-        alt: "Tokyo Tower rising above the city",
+        alt: "东京塔与城市街景",
         position: "center"
       },
       {
-        title: "MT. FUJI",
+        title: "富士山",
         image: "assets/fuji.jpg",
-        alt: "Mount Fuji framed by cherry blossoms",
+        alt: "樱花映衬下的富士山",
         position: "center 52%"
       },
       {
-        title: "OSAKA",
+        title: "大阪",
         image: "assets/osaka.jpg",
-        alt: "A lively street in Osaka",
+        alt: "大阪热闹的街景",
         position: "center"
       },
       {
-        title: "KYOTO",
+        title: "京都",
         image: "assets/kyoto.jpg",
-        alt: "A traditional Kyoto street and temple",
+        alt: "京都传统街道与寺院",
         position: "center"
       },
       {
-        title: "HOKKAIDO",
+        title: "北海道",
         image: "assets/hokkaido.jpg",
-        alt: "Snowy mountains in Hokkaido",
+        alt: "北海道的雪山风景",
         position: "center"
       },
       {
-        title: "NEXT STOP",
+        title: "下一站我们去巴黎！",
         image: "assets/next-stop.jpg",
-        alt: "The Louvre pyramid glowing beneath the evening sky",
+        alt: "夜色中的巴黎卢浮宫金字塔",
         position: "center"
       }
     ];
@@ -547,25 +585,38 @@
     const prevButton = document.querySelector("#prev-button");
     const nextButton = document.querySelector("#next-button");
     const photo = document.querySelector("#scene-photo");
+    const photoStatus = document.querySelector("#photo-status");
     const nameInput = document.querySelector("#friend-name");
     const messageInput = document.querySelector("#birthday-message");
+    const preloadedImages = new Map();
     let activePage = -1;
     let isTurning = false;
 
     const savedName = localStorage.getItem("birthday-passport-name");
     if (savedName) nameInput.value = savedName;
-    const defaultMessage = "生日快乐！愿新的一岁里，你喜欢的事都有回响，想去的地方都能抵达。愿每一天都有小小的惊喜，也一直被温柔与爱包围。出发去看世界吧，下一站我们一起去！";
-    const savedMessage = localStorage.getItem("birthday-passport-message");
-    if (savedMessage === null || savedMessage === "生日快乐！新的一岁，也要去看喜欢的风景。") {
-      messageInput.value = defaultMessage;
-    } else {
-      messageInput.value = savedMessage;
-    }
+    const savedMessage = localStorage.getItem("birthday-passport-message-v2");
+    if (savedMessage !== null) messageInput.value = savedMessage;
+    nextButton.disabled = true;
+    nextButton.setAttribute("aria-label", "正在准备旅行照片");
+    photoStatus.textContent = "正在准备旅行照片…";
+    Promise.all(destinations.map(async (destination) => {
+      const image = new Image();
+      image.src = destination.image;
+      await image.decode();
+      preloadedImages.set(destination.image, image);
+    })).then(() => {
+      photoStatus.textContent = "";
+      nextButton.disabled = false;
+      nextButton.setAttribute("aria-label", "打开护照");
+    }).catch((error) => {
+      console.error("Unable to preload destination photos.", error);
+      photoStatus.textContent = "照片加载失败，请刷新页面重试。";
+    });
     nameInput.addEventListener("input", () => {
       localStorage.setItem("birthday-passport-name", nameInput.value);
     });
     messageInput.addEventListener("input", () => {
-      localStorage.setItem("birthday-passport-message", messageInput.value);
+      localStorage.setItem("birthday-passport-message-v2", messageInput.value);
     });
 
     function renderPage() {
@@ -573,14 +624,14 @@
       document.querySelector("#scene-title").textContent = page.title;
       photo.alt = page.alt;
       photo.style.objectPosition = page.position;
-      photo.src = page.image;
+      photo.src = preloadedImages.get(page.image).src;
       prevButton.disabled = false;
       nextButton.textContent = "›";
       nextButton.setAttribute("aria-label", activePage === destinations.length - 1 ? "回到封面" : "下一页");
     }
 
     function turn(direction) {
-      if (isTurning) return;
+      if (isTurning || preloadedImages.size !== destinations.length) return;
       if (activePage === -1 && direction > 0) {
         activePage = 0;
         book.classList.add("is-open");

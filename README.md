@@ -14,4 +14,4 @@
 
 ## 图片来源
 
-旅行照片和圆润的 M PLUS Rounded 1c 字体保存在 `assets/`，网页运行时不会请求远程图片或字体。字体根据 SIL Open Font License 1.1 使用，许可文本见 `assets/m-plus-rounded-1c-OFL.txt`。
+旅行照片和得意黑（Smiley Sans）字体保存在 `assets/`，网页运行时不会请求远程图片或字体。字体根据 SIL Open Font License 1.1 使用，许可文本见 `assets/smiley-sans-OFL.txt`。
