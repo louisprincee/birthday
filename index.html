@@ -7,19 +7,19 @@
   <title>Happy Birthday</title>
   <style>
     @font-face {
-      font-family: "Smiley Sans";
-      src: url("assets/smiley-sans.woff2") format("woff2");
+      font-family: "ZCOOL KuaiLe";
+      src: url("assets/zcool-kuaile.woff2") format("woff2");
       font-display: swap;
     }
 
     :root {
       color-scheme: light;
-      --ink: #44343c;
+      --ink: #43353a;
       --paper: #fff9f0;
-      --wine: #873d56;
-      --rose: #ce8296;
-      --serif: "Smiley Sans", "Hiragino Maru Gothic ProN", "PingFang SC", sans-serif;
-      --sans: "Smiley Sans", "Hiragino Maru Gothic ProN", "PingFang SC", sans-serif;
+      --wine: #762c32;
+      --rose: #c97b91;
+      --serif: "ZCOOL KuaiLe", "Hiragino Maru Gothic ProN", "PingFang SC", sans-serif;
+      --sans: "ZCOOL KuaiLe", "Hiragino Maru Gothic ProN", "PingFang SC", sans-serif;
     }
 
     * { box-sizing: border-box; }
@@ -31,13 +31,13 @@
       color: var(--ink);
       background:
         radial-gradient(ellipse at 12% 10%, rgba(255,255,255,.9), transparent 34%),
-        radial-gradient(ellipse at 86% 24%, rgba(230,194,214,.34), transparent 31%),
-        radial-gradient(ellipse at 78% 88%, rgba(250,220,192,.35), transparent 33%),
-        #f2e9e9;
+        radial-gradient(ellipse at 86% 24%, rgba(230,194,214,.28), transparent 31%),
+        radial-gradient(ellipse at 78% 88%, rgba(250,220,192,.3), transparent 33%),
+        #f1e9e4;
       font-family: var(--sans);
     }
 
-    button, input { font: inherit; }
+    button { font: inherit; }
     button { color: inherit; }
 
     .app {
@@ -51,8 +51,7 @@
 
     main {
       flex: 1;
-      display: grid;
-      place-items: center;
+      display: flex;
     }
 
     .book-wrap {
@@ -60,6 +59,7 @@
       display: grid;
       justify-items: center;
       gap: 22px;
+      margin: auto 0;
     }
 
     .book-stage {
@@ -75,7 +75,7 @@
       aspect-ratio: 1.53;
       min-height: 400px;
       perspective: 1800px;
-      filter: drop-shadow(0 28px 32px rgba(100, 58, 73, .19));
+      filter: drop-shadow(0 28px 32px rgba(62, 47, 31, .19));
     }
 
     .cover {
@@ -97,8 +97,8 @@
       border-radius: 5px 12px 12px 5px;
       background:
         linear-gradient(90deg, rgba(255,255,255,.06), transparent 5%, transparent 94%, rgba(0,0,0,.13)),
-        radial-gradient(ellipse at 48% 42%, #945064 0%, #78384e 50%, #622d43 100%);
-      box-shadow: inset 7px 0 10px rgba(30, 12, 14, .16), inset 0 0 0 1px rgba(239, 207, 159, .25);
+        radial-gradient(ellipse at 48% 42%, #853b3d 0%, #762e33 48%, #64252d 100%);
+      box-shadow: inset 7px 0 10px rgba(30, 12, 14, .16), inset 0 0 0 1px rgba(224, 190, 123, .22);
       transition: opacity .55s ease, transform .7s cubic-bezier(.2,.8,.2,1), visibility .55s;
     }
 
@@ -119,9 +119,9 @@
     .cover-emblem {
       position: relative;
       z-index: 1;
-      width: 126px;
-      height: 138px;
-      margin: 0 0 13px;
+      width: 142px;
+      height: 154px;
+      margin: 0 0 10px;
       display: grid;
       place-items: center;
     }
@@ -195,7 +195,7 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       overflow: hidden;
-      border: 1px solid #d5bdba;
+      border: 1px solid #d8c8b7;
       border-radius: 12px;
       background: var(--paper);
       opacity: 0;
@@ -236,6 +236,7 @@
     }
 
     .left-page {
+      min-height: 0;
       padding: clamp(24px, 4vw, 44px) clamp(22px, 4vw, 46px);
       display: flex;
       flex-direction: column;
@@ -256,50 +257,47 @@
       font-size: .72em;
     }
 
-    .name-input {
+    .recipient-name {
       width: 100%;
       max-width: 260px;
       padding: 5px 0 7px;
-      border: 0;
-      border-bottom: 1px solid #c9b797;
-      border-radius: 0;
-      outline: none;
+      border-bottom: 1px solid #d7b8b2;
+      margin: 0;
       color: var(--wine);
-      background: transparent;
       font-family: var(--serif);
       font-size: 19px;
     }
 
-    .name-input:focus { border-bottom-color: var(--wine); }
-    .name-input::placeholder { color: #b6a58e; }
-
     .card-message {
       width: 100%;
-      min-height: 580px;
+      min-height: 0;
       flex: 1;
-      margin: 20px 0 0;
-      padding: 2px 0;
-      resize: none;
+      margin: 12px 0 0;
+      padding: 4px 3px 4px 0;
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      scrollbar-color: #c99ba5 transparent;
+      scrollbar-width: thin;
       border: 0;
-      outline: none;
-      color: #70665a;
+      color: #62555a;
       background: repeating-linear-gradient(
         to bottom,
         transparent 0,
         transparent calc(1.4em - 1px),
-        rgba(159, 139, 111, .24) calc(1.4em - 1px),
-        rgba(159, 139, 111, .24) 1.4em
+        rgba(177, 139, 148, .23) calc(1.4em - 1px),
+        rgba(177, 139, 148, .23) 1.4em
       );
       font-family: var(--serif);
       font-size: 17px;
       line-height: 1.4;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
     }
 
-    .card-message::placeholder { color: #b6a58e; }
-
-    .card-message:focus-visible {
-      outline: 2px solid #a87b53;
-      outline-offset: 3px;
+    .card-message::-webkit-scrollbar { width: 6px; }
+    .card-message::-webkit-scrollbar-thumb {
+      border-radius: 99px;
+      background: #c99ba5;
     }
 
     .right-page {
@@ -319,9 +317,18 @@
     .scene-title {
       margin: 0;
       font-family: var(--serif);
-      font-size: clamp(21px, 2.6vw, 29px);
+      font-size: clamp(17px, 2.3vw, 27px);
       font-weight: 500;
       letter-spacing: .08em;
+      color: #49363e;
+    }
+
+    .scene-title::before {
+      margin-right: .38em;
+      color: var(--rose);
+      content: "✦";
+      font-size: .68em;
+      vertical-align: .12em;
     }
 
     .photo-frame {
@@ -331,9 +338,9 @@
       overflow: hidden;
       padding: 6px;
       border: 1px solid #ead8d0;
-      border-radius: 4px;
+      border-radius: 14px;
       background: #fffdf8;
-      box-shadow: 0 5px 14px rgba(94, 62, 69, .12);
+      box-shadow: 0 6px 16px rgba(94, 62, 69, .12);
     }
 
     .scene-photo {
@@ -368,7 +375,7 @@
       display: grid;
       place-items: center;
       padding: 0;
-      border: 1px solid #e3c2c1;
+      border: 1px solid #dfc1bc;
       border-radius: 50%;
       color: #754d5c;
       background: rgba(255, 249, 246, .96);
@@ -381,13 +388,13 @@
     }
 
     .nav-button:hover:not(:disabled) {
-      border-color: #cf8296;
+      border-color: #c97b91;
       background: #fff;
       box-shadow: 0 6px 15px rgba(94, 62, 69, .2);
       transform: translateY(calc(-50% - 2px));
     }
 
-    .nav-button:focus-visible, .name-input:focus-visible {
+    .nav-button:focus-visible {
       outline: 2px solid #a87b53;
       outline-offset: 3px;
     }
@@ -413,6 +420,8 @@
       .book-stage { padding: 0 30px; }
       .book { aspect-ratio: auto; min-height: 0; }
       .nav-button {
+        position: fixed;
+        top: 50vh;
         width: 28px;
         height: 28px;
         font-size: 20px;
@@ -430,23 +439,22 @@
       .book.is-open .cover { display: none; }
       .spread {
         position: relative;
+        display: none;
         grid-template-columns: 1fr;
+        grid-template-rows: 420px 370px;
         aspect-ratio: auto;
-        min-height: 670px;
       }
+      .book.is-open .spread { display: grid; }
       .spread::after { display: none; }
-      .left-page { min-height: 320px; padding: 25px 24px 22px; }
+      .left-page { min-height: 0; padding: 25px 24px 22px; }
       .dedication { margin-top: 12px; }
-      .card-message { min-height: 640px; margin-top: 12px; }
-      .right-page { min-height: 370px; padding: 22px 20px 19px; }
+      .recipient-name { flex: 0 0 auto; }
+      .card-message { min-height: 0; margin-top: 12px; }
+      .right-page { min-height: 0; padding: 22px 20px 19px; }
       .photo-frame { min-height: 245px; }
       .book { width: 100%; }
-      .nav-button { left: 0; }
-      .next-button { right: 0; left: auto; }
-    }
-
-    @media (max-width: 400px) {
-      .card-message { min-height: 860px; }
+      .prev-button { left: 8px; }
+      .next-button { right: 8px; left: auto; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -468,14 +476,28 @@
           <section class="book" id="book" aria-label="日本旅行护照">
             <div class="cover" aria-label="旅行护照封面">
               <div class="cover-emblem" aria-hidden="true">
-                <svg viewBox="0 0 120 132">
-                  <path d="m43 27 3-12 10 10 4-18 5 18 10-10 3 12c-7-2-14-3-18-3s-11 1-17 3Z"/>
-                  <path d="M42 29c5 3 11 4 18 4s13-1 18-4l-2 5c-5 3-10 4-16 4s-11-1-16-4Z"/>
-                  <path d="M60 39c12 7 24 11 39 12v30c0 20-16 35-39 48C37 116 21 101 21 81V51c15-1 27-5 39-12Z"/>
-                  <path d="M60 45c11 6 22 10 33 11v25c0 17-13 30-33 42-20-12-33-25-33-42V56c11-1 22-5 33-11Z" opacity=".58"/>
-                  <path d="M17 51c-8-4-10-12-6-18 4-6 13-6 17 0 3 5 0 11-5 11-4 0-5-5-2-7m82 14c8-4 10-12 6-18-4-6-13-6-17 0-3 5 0 11 5 11 4 0 5-5 2-7"/>
-                  <path d="M17 51c-6 8-7 17-3 25m89-25c6 8 7 17 3 25M15 76l-7-5m97 5 7-5M60 7v5"/>
-                  <text x="60" y="98" text-anchor="middle" fill="#e9cd94" stroke="none" font-family="Georgia, 'Times New Roman', serif" font-size="57" font-style="italic">L</text>
+                <svg viewBox="0 0 160 174">
+                  <g stroke-width="1.15">
+                    <path d="M54 33 46 20l15 7-1-19 10 17 10-17-1 19 15-7-8 13c-7-3-14-4-21-4s-14 1-21 4Z"/>
+                    <path d="M51 36c7 4 16 6 25 6s18-2 25-6l-3 7c-7 5-14 7-22 7s-15-2-22-7Z"/>
+                    <path d="M58 44c5 3 12 4 18 4s13-1 18-4M61 35l-1-7m38 7 1-7"/>
+                    <path d="M80 53c15 9 31 14 51 15v39c0 28-21 49-51 64-30-15-51-36-51-64V68c20-1 36-6 51-15Z"/>
+                    <path d="M80 59c14 8 28 12 45 14v33c0 24-19 42-45 56-26-14-45-32-45-56V73c17-2 31-6 45-14Z"/>
+                    <path d="M80 66c13 7 25 11 38 12v28c0 20-16 36-38 49-22-13-38-29-38-49V78c13-1 25-5 38-12Z" opacity=".62"/>
+                    <text x="80" y="120" text-anchor="middle" fill="#e9cd94" stroke="none" font-family="Georgia, 'Times New Roman', serif" font-size="64" font-style="italic">L</text>
+                    <path d="M25 67C12 58 11 44 20 38c8-6 19-1 18 8-1 7-10 9-13 3m110 18c13-9 14-23 5-29-8-6-19-1-18 8 1 7 10 9 13 3"/>
+                    <path d="M28 75C13 85 12 101 22 108c8 5 18-1 16-9-2-6-10-7-13-1m110-23c15 10 16 26 6 33-8 5-18-1-16-9 2-6 10-7 13-1"/>
+                    <path d="M26 76c-8 12-9 25-3 36l-11-4 8 13 12-7m102-38c8 12 9 25 3 36l11-4-8 13-12-7"/>
+                    <path d="M35 119c-13 3-19 13-13 20 5 6 14 3 13-3-1-4-6-5-8-1m98-16c13 3 19 13 13 20-5 6-14 3-13-3 1-4 6-5 8-1"/>
+                    <path d="M39 132c-8 2-13 7-13 13m108-13c8 2 13 7 13 13M21 57l-9-2m127 2 9-2M17 94l-9 2m144-2 9 2M42 51l-5-7m86 7 5-7"/>
+                    <path d="m80 157 5 6-5 6-5-6 5-6Z"/>
+                  </g>
+                  <g fill="#e9cd94" stroke="none">
+                    <circle cx="47" cy="61" r="1.8"/><circle cx="57" cy="56" r="1.5"/><circle cx="68" cy="53" r="1.4"/>
+                    <circle cx="113" cy="61" r="1.8"/><circle cx="103" cy="56" r="1.5"/><circle cx="92" cy="53" r="1.4"/>
+                    <circle cx="18" cy="74" r="1.8"/><circle cx="142" cy="74" r="1.8"/>
+                    <circle cx="17" cy="119" r="1.8"/><circle cx="143" cy="119" r="1.8"/>
+                  </g>
                 </svg>
               </div>
               <p class="cover-country">LIA第二支部</p>
@@ -491,9 +513,8 @@
             <div class="spread" aria-live="polite">
               <section class="paper left-page" aria-label="生日贺卡">
                 <h2 class="dedication">写给</h2>
-                <input class="name-input" id="friend-name" type="text" maxlength="24" placeholder="亲爱的璐璐姐" aria-label="收礼人的名字">
-                <textarea class="card-message" id="birthday-message" maxlength="1000" aria-label="生日祝福" placeholder="在这里写下生日祝福……">
-22岁生日快乐！！🎂
+                <p class="recipient-name">亲爱的璐璐姐</p>
+                <div class="card-message" id="birthday-message" aria-label="生日祝福">22岁生日快乐！！🎂
 
 LIA第二支部不知不觉已经1200多天啦！
 这一年，我们一起走过了绍兴和宁波：
@@ -515,7 +536,7 @@ srds第一次出国一定要和我们一起耶✈️
 再一次祝你生日快乐！🎁
 
 From Louis
-2025.11.1</textarea>
+2026.11.1</div>
               </section>
               <section class="paper right-page" aria-label="目的地风景">
                 <div class="scene-head">
@@ -574,7 +595,7 @@ From Louis
         position: "center"
       },
       {
-        title: "下一站我们去巴黎！",
+        title: "再下一站也许是巴黎么...?",
         image: "assets/next-stop.jpg",
         alt: "夜色中的巴黎卢浮宫金字塔",
         position: "center"
@@ -586,16 +607,10 @@ From Louis
     const nextButton = document.querySelector("#next-button");
     const photo = document.querySelector("#scene-photo");
     const photoStatus = document.querySelector("#photo-status");
-    const nameInput = document.querySelector("#friend-name");
-    const messageInput = document.querySelector("#birthday-message");
     const preloadedImages = new Map();
     let activePage = -1;
     let isTurning = false;
 
-    const savedName = localStorage.getItem("birthday-passport-name");
-    if (savedName) nameInput.value = savedName;
-    const savedMessage = localStorage.getItem("birthday-passport-message-v2");
-    if (savedMessage !== null) messageInput.value = savedMessage;
     nextButton.disabled = true;
     nextButton.setAttribute("aria-label", "正在准备旅行照片");
     photoStatus.textContent = "正在准备旅行照片…";
@@ -612,13 +627,6 @@ From Louis
       console.error("Unable to preload destination photos.", error);
       photoStatus.textContent = "照片加载失败，请刷新页面重试。";
     });
-    nameInput.addEventListener("input", () => {
-      localStorage.setItem("birthday-passport-name", nameInput.value);
-    });
-    messageInput.addEventListener("input", () => {
-      localStorage.setItem("birthday-passport-message-v2", messageInput.value);
-    });
-
     function renderPage() {
       const page = destinations[activePage];
       document.querySelector("#scene-title").textContent = page.title;
@@ -669,7 +677,6 @@ From Louis
     prevButton.addEventListener("click", () => turn(-1));
     nextButton.addEventListener("click", () => turn(1));
     document.addEventListener("keydown", (event) => {
-      if (event.target instanceof HTMLInputElement) return;
       if (event.key === "ArrowRight") turn(1);
       if (event.key === "ArrowLeft") turn(-1);
     });
