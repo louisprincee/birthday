@@ -4,15 +4,21 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f3eee5">
-  <title>给你的日本旅行</title>
+  <title>Happy Birthday</title>
   <style>
+    @font-face {
+      font-family: "M PLUS Rounded 1c";
+      src: url("assets/m-plus-rounded-1c.ttf") format("truetype");
+      font-display: swap;
+    }
+
     :root {
       color-scheme: light;
       --ink: #332d27;
       --paper: #f7f1e5;
       --wine: #762c32;
-      --serif: "Iowan Old Style", "Baskerville", "Songti SC", "Noto Serif CJK SC", serif;
-      --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      --serif: "M PLUS Rounded 1c", "Hiragino Maru Gothic ProN", "PingFang SC", sans-serif;
+      --sans: "M PLUS Rounded 1c", "Hiragino Maru Gothic ProN", "PingFang SC", sans-serif;
     }
 
     * { box-sizing: border-box; }
@@ -54,9 +60,16 @@
       gap: 22px;
     }
 
+    .book-stage {
+      position: relative;
+      width: 100%;
+      display: grid;
+      justify-items: center;
+    }
+
     .book {
       position: relative;
-      width: min(100%, 930px);
+      width: min(calc(100% - 112px), 930px);
       aspect-ratio: 1.53;
       min-height: 400px;
       perspective: 1800px;
@@ -104,9 +117,9 @@
     .cover-emblem {
       position: relative;
       z-index: 1;
-      width: 96px;
-      height: 96px;
-      margin: 0 0 26px;
+      width: 108px;
+      height: 108px;
+      margin: 0 0 19px;
       display: grid;
       place-items: center;
       border: 1px solid rgba(224, 193, 133, .78);
@@ -123,8 +136,8 @@
     }
 
     .cover-emblem svg {
-      width: 58px;
-      height: 58px;
+      width: 66px;
+      height: 66px;
       fill: none;
       stroke: #e9cd94;
       stroke-linecap: round;
@@ -132,24 +145,57 @@
       stroke-width: 1.15;
     }
 
-    .cover-title {
+    .cover-country {
       position: relative;
       z-index: 1;
       margin: 0;
+      font-size: 24px;
+      letter-spacing: .16em;
+    }
+
+    .cover-country-en {
+      position: relative;
+      z-index: 1;
+      margin: 5px 0 0;
+      font-family: Georgia, serif;
+      font-size: 11px;
+      letter-spacing: .18em;
+    }
+
+    .cover-title {
+      position: relative;
+      z-index: 1;
+      margin: 22px 0 0;
+      display: flex;
+      justify-content: center;
+      gap: .48em;
       font-family: var(--serif);
-      font-size: clamp(27px, 3.5vw, 36px);
+      font-size: clamp(38px, 4.7vw, 50px);
       font-weight: 500;
-      letter-spacing: .28em;
-      text-indent: .28em;
+      letter-spacing: .12em;
+      line-height: 1.15;
     }
 
     .cover-en {
       position: relative;
       z-index: 1;
-      margin: 12px 0 0;
+      margin: 8px 0 0;
       font-family: Georgia, serif;
-      font-size: 13px;
-      letter-spacing: .34em;
+      font-size: 16px;
+      letter-spacing: .2em;
+    }
+
+    .cover-chip {
+      position: relative;
+      z-index: 1;
+      width: 34px;
+      height: 24px;
+      margin: 24px 0 0;
+      fill: none;
+      stroke: #e9cd94;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-width: 1.5;
     }
 
     .spread {
@@ -229,28 +275,33 @@
     .name-input:focus { border-bottom-color: var(--wine); }
     .name-input::placeholder { color: #b6a58e; }
 
-    .dedication-copy {
-      max-width: 280px;
-      margin: 15px 0 0;
+    .card-message {
+      width: 100%;
+      min-height: 190px;
+      flex: 1;
+      margin: 20px 0 0;
+      padding: 8px 0;
+      resize: none;
+      border: 0;
+      outline: none;
       color: #70665a;
+      background: repeating-linear-gradient(
+        to bottom,
+        transparent 0,
+        transparent calc(2em - 1px),
+        rgba(159, 139, 111, .24) calc(2em - 1px),
+        rgba(159, 139, 111, .24) 2em
+      );
       font-family: var(--serif);
-      font-size: 14px;
-      line-height: 1.9;
+      font-size: 16px;
+      line-height: 2;
     }
 
-    .route {
-      margin: auto 0 0;
-      padding: 16px 0 0;
-      border-top: 1px solid #d9cdb9;
-      list-style: none;
-    }
+    .card-message::placeholder { color: #b6a58e; }
 
-    .route li {
-      display: grid;
-      align-items: center;
-      padding: 7px 0;
-      color: #6a5d50;
-      font-size: 13px;
+    .card-message:focus-visible {
+      outline: 2px solid #a87b53;
+      outline-offset: 3px;
     }
 
     .right-page {
@@ -309,40 +360,32 @@
       45% { opacity: .58; }
     }
 
-    .controls {
-      width: min(100%, 930px);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 14px;
-    }
-
-    .control-hint {
-      color: #887b6d;
-      font-size: 11px;
-    }
-
-    .control-actions {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
     .nav-button {
-      min-width: 104px;
-      padding: 10px 15px;
-      border: 1px solid #c9b89d;
-      border-radius: 3px;
+      position: absolute;
+      z-index: 4;
+      top: 50%;
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      padding: 0;
+      border: 1px solid #ddc6ae;
+      border-radius: 50%;
       color: #5d5044;
-      background: rgba(255, 252, 246, .52);
+      background: rgba(255, 250, 241, .92);
+      box-shadow: 0 3px 10px rgba(72, 53, 32, .12);
+      font-size: 28px;
+      line-height: 1;
       cursor: pointer;
-      transition: background .2s, border-color .2s, transform .2s;
+      transform: translateY(-50%);
+      transition: background .2s, border-color .2s, box-shadow .2s, transform .2s;
     }
 
     .nav-button:hover:not(:disabled) {
-      border-color: #9f7956;
-      background: #fbf7ef;
-      transform: translateY(-1px);
+      border-color: #c49372;
+      background: #fffdf8;
+      box-shadow: 0 5px 13px rgba(72, 53, 32, .18);
+      transform: translateY(calc(-50% - 2px));
     }
 
     .nav-button:focus-visible, .name-input:focus-visible {
@@ -350,22 +393,23 @@
       outline-offset: 3px;
     }
 
+    .prev-button { left: 0; }
+    .next-button { right: 0; }
+
     .nav-button:disabled {
       opacity: .45;
       cursor: not-allowed;
     }
 
-    .next-button {
-      border-color: var(--wine);
-      color: #fff8eb;
-      background: var(--wine);
-    }
-
-    .next-button:hover:not(:disabled) { background: #63242c; }
-
     @media (max-width: 700px) {
       .app { padding: 16px; }
+      .book-stage { padding: 0 30px; }
       .book { aspect-ratio: auto; min-height: 0; }
+      .nav-button {
+        width: 28px;
+        height: 28px;
+        font-size: 20px;
+      }
       .cover {
         position: relative;
         left: auto;
@@ -384,15 +428,14 @@
         min-height: 670px;
       }
       .spread::after { display: none; }
-      .left-page { min-height: 290px; padding: 25px 24px 22px; }
+      .left-page { min-height: 320px; padding: 25px 24px 22px; }
       .dedication { margin-top: 12px; }
-      .dedication-copy { margin-top: 10px; }
-      .route { padding-top: 10px; }
-      .route li { padding: 4px 0; }
+      .card-message { margin-top: 12px; }
       .right-page { min-height: 370px; padding: 22px 20px 19px; }
       .photo-frame { min-height: 245px; }
-      .controls { align-items: flex-start; }
-      .nav-button { min-width: 86px; padding: 10px 11px; font-size: 12px; }
+      .book { width: 100%; }
+      .nav-button { left: 0; }
+      .next-button { right: 0; left: auto; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -409,50 +452,46 @@
   <div class="app">
     <main>
       <div class="book-wrap">
-        <section class="book" id="book" aria-label="日本旅行护照">
-          <div class="cover" aria-label="旅行护照封面">
-            <div class="cover-emblem" aria-hidden="true">
-              <svg viewBox="0 0 64 64">
-                <path d="M32 10 36 26 48 16 38 28 54 32 38 36 48 48 36 38 32 54 28 38 16 48 26 36 10 32 26 28 16 16 28 26Z"/>
-                <circle cx="32" cy="32" r="3.5"/>
-                <circle cx="32" cy="32" r="19"/>
-                <path d="M32 5v4m0 46v4M5 32h4m46 0h4"/>
+        <div class="book-stage">
+          <button class="nav-button prev-button" id="prev-button" type="button" aria-label="上一页" disabled>‹</button>
+          <section class="book" id="book" aria-label="日本旅行护照">
+            <div class="cover" aria-label="旅行护照封面">
+              <div class="cover-emblem" aria-hidden="true">
+                <svg viewBox="0 0 64 64">
+                  <path d="M32 10 36 26 48 16 38 28 54 32 38 36 48 48 36 38 32 54 28 38 16 48 26 36 10 32 26 28 16 16 28 26Z"/>
+                  <circle cx="32" cy="32" r="3.5"/>
+                  <circle cx="32" cy="32" r="19"/>
+                  <path d="M32 5v4m0 46v4M5 32h4m46 0h4"/>
+                </svg>
+              </div>
+              <p class="cover-country">LIA第二支部</p>
+              <p class="cover-country-en">LIA SECOND BRANCH</p>
+              <h1 class="cover-title"><span>护</span><span>照</span></h1>
+              <p class="cover-en">PASSPORT</p>
+              <svg class="cover-chip" viewBox="0 0 36 26" aria-hidden="true">
+                <rect x="2" y="2" width="32" height="22" rx="3"/>
+                <path d="M2 9h8l4 4-4 4H2m32-8h-8l-4 4 4 4h8"/>
               </svg>
             </div>
-            <h1 class="cover-title">护照</h1>
-            <p class="cover-en">PASSPORT</p>
-          </div>
 
-          <div class="spread" aria-live="polite">
-            <section class="paper left-page" aria-label="旅程寄语与目录">
-              <h2 class="dedication">写给</h2>
-              <input class="name-input" id="friend-name" type="text" maxlength="24" placeholder="亲爱的你" aria-label="收礼人的名字">
-              <p class="dedication-copy" id="dedication-copy">生日快乐！新的一岁，也要去看喜欢的风景。</p>
-              <ol class="route" aria-label="日本旅程目录">
-                <li>东京 · 城市漫游</li>
-                <li>富士山 · 山与湖</li>
-                <li>大阪 · 好吃好逛</li>
-                <li>北海道 · 雪与花</li>
-              </ol>
-            </section>
-            <section class="paper right-page" aria-label="目的地风景">
-              <div class="scene-head">
-                <h2 class="scene-title" id="scene-title">日本旅行</h2>
-              </div>
-              <div class="photo-frame">
-                <img class="scene-photo" id="scene-photo" alt="日本旅行风景">
-              </div>
-            </section>
-          </div>
-        </section>
-
-        <nav class="controls" aria-label="翻页控制">
-          <span class="control-hint" id="control-hint" aria-live="polite"></span>
-          <div class="control-actions">
-            <button class="nav-button" id="prev-button" type="button" disabled hidden>‹ 上一页</button>
-            <button class="nav-button next-button" id="next-button" type="button" aria-label="打开护照">打开护照 &nbsp;›</button>
-          </div>
-        </nav>
+            <div class="spread" aria-live="polite">
+              <section class="paper left-page" aria-label="生日贺卡">
+                <h2 class="dedication">写给</h2>
+                <input class="name-input" id="friend-name" type="text" maxlength="24" placeholder="亲爱的你" aria-label="收礼人的名字">
+                <textarea class="card-message" id="birthday-message" maxlength="1000" aria-label="生日祝福" placeholder="在这里写下生日祝福……">生日快乐！愿新的一岁里，你喜欢的事都有回响，想去的地方都能抵达。愿每一天都有小小的惊喜，也一直被温柔与爱包围。出发去看世界吧，下一站我们一起去！</textarea>
+              </section>
+              <section class="paper right-page" aria-label="目的地风景">
+                <div class="scene-head">
+                  <h2 class="scene-title" id="scene-title">JAPAN TRIP</h2>
+                </div>
+                <div class="photo-frame">
+                  <img class="scene-photo" id="scene-photo" alt="A scenic view of Japan">
+                </div>
+              </section>
+            </div>
+          </section>
+          <button class="nav-button next-button" id="next-button" type="button" aria-label="打开护照">›</button>
+        </div>
       </div>
     </main>
 
@@ -461,45 +500,45 @@
   <script>
     const destinations = [
       {
-        title: "京都",
-        image: "assets/kyoto-visa.jpg",
-        alt: "京都街巷与传统日式建筑",
-        position: "center 55%"
-      },
-      {
-        title: "东京",
-        image: "assets/tokyo.jpg",
-        alt: "东京城市街景与夜色",
+        title: "VISA",
+        image: "assets/visa.jpg",
+        alt: "A Japan map on the visa page",
         position: "center"
       },
       {
-        title: "富士山",
+        title: "TOKYO",
+        image: "assets/tokyo.jpg",
+        alt: "Tokyo Tower rising above the city",
+        position: "center"
+      },
+      {
+        title: "MT. FUJI",
         image: "assets/fuji.jpg",
-        alt: "富士山与湖面风景",
+        alt: "Mount Fuji framed by cherry blossoms",
         position: "center 52%"
       },
       {
-        title: "大阪",
+        title: "OSAKA",
         image: "assets/osaka.jpg",
-        alt: "大阪城市与日本街景",
+        alt: "A lively street in Osaka",
         position: "center"
       },
       {
-        title: "北海道",
-        image: "assets/hokkaido.jpg",
-        alt: "冬日雪山与星空",
-        position: "center"
-      },
-      {
-        title: "京都",
+        title: "KYOTO",
         image: "assets/kyoto.jpg",
-        alt: "京都传统街道与寺院",
+        alt: "A traditional Kyoto street and temple",
         position: "center"
       },
       {
-        title: "生日快乐",
+        title: "HOKKAIDO",
+        image: "assets/hokkaido.jpg",
+        alt: "Snowy mountains in Hokkaido",
+        position: "center"
+      },
+      {
+        title: "NEXT STOP",
         image: "assets/next-stop.jpg",
-        alt: "夜空下的日本风景",
+        alt: "The Louvre pyramid glowing beneath the evening sky",
         position: "center"
       }
     ];
@@ -507,16 +546,26 @@
     const book = document.querySelector("#book");
     const prevButton = document.querySelector("#prev-button");
     const nextButton = document.querySelector("#next-button");
-    const hint = document.querySelector("#control-hint");
     const photo = document.querySelector("#scene-photo");
     const nameInput = document.querySelector("#friend-name");
+    const messageInput = document.querySelector("#birthday-message");
     let activePage = -1;
     let isTurning = false;
 
     const savedName = localStorage.getItem("birthday-passport-name");
     if (savedName) nameInput.value = savedName;
+    const defaultMessage = "生日快乐！愿新的一岁里，你喜欢的事都有回响，想去的地方都能抵达。愿每一天都有小小的惊喜，也一直被温柔与爱包围。出发去看世界吧，下一站我们一起去！";
+    const savedMessage = localStorage.getItem("birthday-passport-message");
+    if (savedMessage === null || savedMessage === "生日快乐！新的一岁，也要去看喜欢的风景。") {
+      messageInput.value = defaultMessage;
+    } else {
+      messageInput.value = savedMessage;
+    }
     nameInput.addEventListener("input", () => {
       localStorage.setItem("birthday-passport-name", nameInput.value);
+    });
+    messageInput.addEventListener("input", () => {
+      localStorage.setItem("birthday-passport-message", messageInput.value);
     });
 
     function renderPage() {
@@ -526,10 +575,8 @@
       photo.style.objectPosition = page.position;
       photo.src = page.image;
       prevButton.disabled = false;
-      prevButton.hidden = false;
-      nextButton.textContent = activePage === destinations.length - 1 ? "回到封面  ›" : "下一页  ›";
+      nextButton.textContent = "›";
       nextButton.setAttribute("aria-label", activePage === destinations.length - 1 ? "回到封面" : "下一页");
-      hint.textContent = `${String(activePage + 1).padStart(2, "0")} / ${String(destinations.length).padStart(2, "0")}`;
     }
 
     function turn(direction) {
@@ -544,10 +591,8 @@
         activePage = -1;
         book.classList.remove("is-open");
         prevButton.disabled = true;
-        prevButton.hidden = true;
-        nextButton.textContent = "打开护照  ›";
+        nextButton.textContent = "›";
         nextButton.setAttribute("aria-label", "打开护照");
-        hint.textContent = "";
         return;
       }
       const nextPage = activePage + direction;
@@ -555,10 +600,8 @@
         activePage = -1;
         book.classList.remove("is-open");
         prevButton.disabled = true;
-        prevButton.hidden = true;
-        nextButton.textContent = "打开护照  ›";
+        nextButton.textContent = "›";
         nextButton.setAttribute("aria-label", "打开护照");
-        hint.textContent = "";
         return;
       }
       if (nextPage >= destinations.length) return;

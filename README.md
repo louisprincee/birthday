@@ -1,4 +1,4 @@
-# 给你的日本旅行
+# Happy Birthday
 
 一份可离线打开的生日旅行纪念册。页面和图片都保存在本项目中；联网仅用于 GitHub Pages 首次发布。
 
@@ -14,4 +14,4 @@
 
 ## 图片来源
 
-风景照片来自 Unsplash，已下载到 `assets/`，网页运行时不会请求远程图片。
+旅行照片和圆润的 M PLUS Rounded 1c 字体保存在 `assets/`，网页运行时不会请求远程图片或字体。字体根据 SIL Open Font License 1.1 使用，许可文本见 `assets/m-plus-rounded-1c-OFL.txt`。
