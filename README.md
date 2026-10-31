@@ -14,4 +14,4 @@
 
 ## 图片来源
 
-旅行照片和站酷快乐体（ZCOOL KuaiLe）字体保存在 `assets/`，网页运行时不会请求远程图片或字体。字体根据 SIL Open Font License 1.1 使用，许可文本见 `assets/zcool-kuaile-OFL.txt`。
+护照徽章、旅行照片和站酷快乐体（ZCOOL KuaiLe）字体保存在 `assets/`，网页运行时不会请求远程图片或字体。字体根据 SIL Open Font License 1.1 使用，许可文本见 `assets/zcool-kuaile-OFL.txt`。
