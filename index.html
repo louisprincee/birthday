@@ -1,0 +1,796 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f3eee5">
+  <title>给你的日本旅行 · 生日纪念护照</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #332d27;
+      --muted: #85786b;
+      --paper: #f7f1e5;
+      --paper-shadow: #e7dcc8;
+      --wine: #762c32;
+      --gold: #c8a66a;
+      --serif: "Iowan Old Style", "Baskerville", "Songti SC", "Noto Serif CJK SC", serif;
+      --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      min-width: 320px;
+      min-height: 100vh;
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(ellipse at 18% 8%, rgba(255,255,255,.82), transparent 36%),
+        radial-gradient(ellipse at 86% 78%, rgba(219,201,170,.25), transparent 34%),
+        #eee8dd;
+      font-family: var(--sans);
+    }
+
+    button, input { font: inherit; }
+    button { color: inherit; }
+
+    .app {
+      width: min(1120px, 100%);
+      min-height: 100vh;
+      margin: 0 auto;
+      padding: 28px 34px 20px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .topbar, .bottom-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #65584c;
+      font-size: 11px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+
+    .brand-mark {
+      width: 27px;
+      height: 27px;
+      display: grid;
+      place-items: center;
+      border: 1px solid #c8b99f;
+      border-radius: 50%;
+      color: var(--wine);
+      font-family: var(--serif);
+      font-size: 15px;
+    }
+
+    .edition {
+      color: #897b6d;
+      font-size: 11px;
+      letter-spacing: .12em;
+    }
+
+    main {
+      flex: 1;
+      display: grid;
+      place-items: center;
+      padding: 28px 0 20px;
+    }
+
+    .book-wrap {
+      width: 100%;
+      display: grid;
+      justify-items: center;
+      gap: 22px;
+    }
+
+    .book {
+      position: relative;
+      width: min(100%, 930px);
+      aspect-ratio: 1.53;
+      min-height: 400px;
+      perspective: 1800px;
+      filter: drop-shadow(0 26px 28px rgba(62, 47, 31, .19));
+    }
+
+    .cover {
+      position: absolute;
+      z-index: 3;
+      inset: 0 auto 0 50%;
+      width: min(50%, 470px);
+      min-width: 310px;
+      transform: translateX(-50%);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 38px 26px 28px;
+      color: #e7c98d;
+      text-align: center;
+      border: 1px solid #5d2027;
+      border-radius: 5px 12px 12px 5px;
+      background:
+        linear-gradient(90deg, rgba(255,255,255,.06), transparent 5%, transparent 94%, rgba(0,0,0,.13)),
+        radial-gradient(ellipse at 48% 42%, #853b3d 0%, #762e33 48%, #64252d 100%);
+      box-shadow: inset 7px 0 10px rgba(30, 12, 14, .16), inset 0 0 0 1px rgba(224, 190, 123, .22);
+      transition: opacity .55s ease, transform .7s cubic-bezier(.2,.8,.2,1), visibility .55s;
+    }
+
+    .cover::before, .cover::after {
+      position: absolute;
+      inset: 12px;
+      content: "";
+      border: 1px solid rgba(218, 183, 116, .42);
+      border-radius: 3px 8px 8px 3px;
+      pointer-events: none;
+    }
+
+    .cover::after {
+      inset: 17px;
+      border-color: rgba(218, 183, 116, .17);
+    }
+
+    .cover-top {
+      position: relative;
+      z-index: 1;
+      font-size: 12px;
+      letter-spacing: .28em;
+    }
+
+    .cover-emblem {
+      position: relative;
+      z-index: 1;
+      width: 92px;
+      height: 92px;
+      margin: 52px 0 27px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(224, 193, 133, .78);
+      border-radius: 50%;
+      color: #e9cd94;
+      font-family: var(--serif);
+      font-size: 46px;
+      line-height: 1;
+      box-shadow: 0 0 0 5px rgba(224, 193, 133, .08), inset 0 0 16px rgba(224, 193, 133, .08);
+    }
+
+    .cover-title {
+      position: relative;
+      z-index: 1;
+      margin: 0;
+      font-family: var(--serif);
+      font-size: clamp(24px, 3.3vw, 33px);
+      font-weight: 500;
+      letter-spacing: .32em;
+      text-indent: .32em;
+    }
+
+    .cover-en {
+      position: relative;
+      z-index: 1;
+      margin: 10px 0 0;
+      font-family: Georgia, serif;
+      font-size: 12px;
+      letter-spacing: .32em;
+    }
+
+    .cover-rule {
+      position: relative;
+      z-index: 1;
+      width: 40px;
+      margin: 27px 0 16px;
+      border: 0;
+      border-top: 1px solid rgba(224, 193, 133, .62);
+    }
+
+    .cover-subtitle {
+      position: relative;
+      z-index: 1;
+      margin: 0;
+      font-family: var(--serif);
+      font-size: 13px;
+      letter-spacing: .18em;
+    }
+
+    .cover-note {
+      position: relative;
+      z-index: 1;
+      margin-top: auto;
+      padding: 5px 10px;
+      border: 1px solid rgba(224, 193, 133, .48);
+      border-radius: 2px;
+      color: #f0d7a4;
+      font-size: 9px;
+      letter-spacing: .12em;
+    }
+
+    .spread {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      overflow: hidden;
+      border: 1px solid #c8baa3;
+      border-radius: 6px;
+      background: var(--paper);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity .45s ease, visibility .45s;
+    }
+
+    .spread::after {
+      position: absolute;
+      z-index: 2;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 24px;
+      content: "";
+      transform: translateX(-50%);
+      background: linear-gradient(90deg, rgba(78,57,34,.10), rgba(255,255,255,.38) 46%, rgba(78,57,34,.08));
+      pointer-events: none;
+    }
+
+    .book.is-open .cover {
+      opacity: 0;
+      visibility: hidden;
+      transform: translateX(-50%) rotateY(-27deg) scale(.96);
+      pointer-events: none;
+    }
+
+    .book.is-open .spread { opacity: 1; visibility: visible; }
+
+    .paper {
+      position: relative;
+      min-width: 0;
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse at 18% 16%, rgba(255,255,255,.7), transparent 46%),
+        repeating-linear-gradient(0deg, rgba(110,84,53,.018) 0, rgba(110,84,53,.018) 1px, transparent 1px, transparent 4px),
+        var(--paper);
+    }
+
+    .left-page {
+      padding: clamp(24px, 4vw, 44px) clamp(22px, 4vw, 46px);
+      display: flex;
+      flex-direction: column;
+      border-right: 1px solid rgba(159, 139, 111, .24);
+    }
+
+    .page-kicker {
+      color: #9c8060;
+      font-size: 9px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+
+    .dedication {
+      margin: 27px 0 5px;
+      font-family: var(--serif);
+      font-size: clamp(19px, 2.5vw, 27px);
+      font-weight: 500;
+    }
+
+    .name-input {
+      width: 100%;
+      max-width: 260px;
+      padding: 5px 0 7px;
+      border: 0;
+      border-bottom: 1px solid #c9b797;
+      border-radius: 0;
+      outline: none;
+      color: var(--wine);
+      background: transparent;
+      font-family: var(--serif);
+      font-size: 19px;
+    }
+
+    .name-input:focus { border-bottom-color: var(--wine); }
+    .name-input::placeholder { color: #b6a58e; }
+
+    .dedication-copy {
+      max-width: 280px;
+      margin: 19px 0 0;
+      color: #70665a;
+      font-family: var(--serif);
+      font-size: 14px;
+      line-height: 1.9;
+    }
+
+    .route {
+      margin: auto 0 0;
+      padding: 16px 0 0;
+      border-top: 1px solid #d9cdb9;
+      list-style: none;
+    }
+
+    .route li {
+      display: grid;
+      grid-template-columns: 24px 1fr auto;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 0;
+      color: #6a5d50;
+      font-size: 11px;
+    }
+
+    .route-no {
+      color: #b18c60;
+      font-family: Georgia, serif;
+      font-size: 10px;
+    }
+
+    .route-state {
+      color: #aa9983;
+      font-size: 9px;
+      letter-spacing: .08em;
+    }
+
+    .stamp {
+      position: absolute;
+      right: 24px;
+      top: 26px;
+      width: 67px;
+      height: 67px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(150, 68, 61, .65);
+      border-radius: 50%;
+      color: rgba(150, 68, 61, .82);
+      font-family: var(--serif);
+      font-size: 10px;
+      line-height: 1.35;
+      text-align: center;
+      transform: rotate(12deg);
+    }
+
+    .stamp::before {
+      position: absolute;
+      inset: 4px;
+      content: "";
+      border: 1px dotted rgba(150, 68, 61, .62);
+      border-radius: 50%;
+    }
+
+    .right-page {
+      padding: clamp(20px, 3vw, 34px) clamp(20px, 3vw, 34px) 25px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .scene-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      margin: 1px 1px 13px;
+    }
+
+    .scene-title {
+      margin: 0;
+      font-family: var(--serif);
+      font-size: clamp(21px, 2.6vw, 29px);
+      font-weight: 500;
+      letter-spacing: .08em;
+    }
+
+    .scene-index {
+      color: #9c8060;
+      font-family: Georgia, serif;
+      font-size: 11px;
+      letter-spacing: .1em;
+    }
+
+    .photo-frame {
+      position: relative;
+      flex: 1;
+      min-height: 0;
+      overflow: hidden;
+      padding: 6px;
+      border: 1px solid #d8cbb6;
+      background: #fffaf1;
+      box-shadow: 0 3px 8px rgba(72, 53, 32, .10);
+    }
+
+    .scene-photo {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      filter: saturate(.88) contrast(.96);
+      background: #d7c8b0;
+    }
+
+    .photo-caption {
+      position: absolute;
+      right: 15px;
+      bottom: 15px;
+      left: 15px;
+      padding: 23px 13px 10px;
+      color: white;
+      background: linear-gradient(transparent, rgba(18, 19, 20, .68));
+      font-family: var(--serif);
+      font-size: 14px;
+      letter-spacing: .06em;
+    }
+
+    .scene-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 2px 0;
+      color: #76695a;
+      font-size: 10px;
+    }
+
+    .scene-note {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .mini-stamp {
+      flex: 0 0 auto;
+      padding: 4px 7px;
+      border: 1px solid rgba(139, 61, 58, .55);
+      color: #944d48;
+      font-size: 9px;
+      letter-spacing: .08em;
+      transform: rotate(-4deg);
+    }
+
+    .book.turning .right-page { animation: turn-page .52s ease both; }
+    .book.turning .left-page { animation: settle-page .52s ease both; }
+
+    @keyframes turn-page {
+      0% { transform: perspective(1000px) rotateY(0); filter: brightness(1); }
+      45% { transform: perspective(1000px) rotateY(-9deg); filter: brightness(.86); }
+      100% { transform: perspective(1000px) rotateY(0); filter: brightness(1); }
+    }
+
+    @keyframes settle-page {
+      0%, 100% { opacity: 1; }
+      45% { opacity: .58; }
+    }
+
+    .controls {
+      width: min(100%, 930px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .control-hint {
+      color: #887b6d;
+      font-size: 11px;
+    }
+
+    .control-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-button {
+      min-width: 104px;
+      padding: 10px 15px;
+      border: 1px solid #c9b89d;
+      border-radius: 3px;
+      color: #5d5044;
+      background: rgba(255, 252, 246, .52);
+      cursor: pointer;
+      transition: background .2s, border-color .2s, transform .2s;
+    }
+
+    .nav-button:hover:not(:disabled) {
+      border-color: #9f7956;
+      background: #fbf7ef;
+      transform: translateY(-1px);
+    }
+
+    .nav-button:focus-visible, .name-input:focus-visible {
+      outline: 2px solid #a87b53;
+      outline-offset: 3px;
+    }
+
+    .nav-button:disabled {
+      opacity: .45;
+      cursor: not-allowed;
+    }
+
+    .next-button {
+      border-color: var(--wine);
+      color: #fff8eb;
+      background: var(--wine);
+    }
+
+    .next-button:hover:not(:disabled) { background: #63242c; }
+
+    .bottom-bar {
+      padding-top: 12px;
+      border-top: 1px solid rgba(154, 134, 106, .27);
+      color: #958675;
+      font-size: 10px;
+      letter-spacing: .04em;
+    }
+
+    .bottom-bar a { color: inherit; text-decoration-color: #c6b8a2; }
+
+    @media (max-width: 700px) {
+      .app { padding: 20px 16px 14px; }
+      .edition { font-size: 9px; text-align: right; }
+      main { padding: 26px 0 18px; }
+      .book { aspect-ratio: auto; min-height: 0; }
+      .cover {
+        position: relative;
+        left: auto;
+        width: min(100%, 390px);
+        min-width: 0;
+        height: min(133vw, 540px);
+        min-height: 430px;
+        margin: 0 auto;
+        transform: none;
+      }
+      .cover-emblem { margin-top: 48px; }
+      .book.is-open .cover { display: none; }
+      .spread {
+        position: relative;
+        grid-template-columns: 1fr;
+        aspect-ratio: auto;
+        min-height: 670px;
+      }
+      .spread::after { display: none; }
+      .left-page { min-height: 290px; padding: 25px 24px 22px; }
+      .dedication { margin-top: 18px; }
+      .dedication-copy { margin-top: 12px; }
+      .route { padding-top: 10px; }
+      .route li { padding: 4px 0; }
+      .stamp { top: 22px; right: 20px; width: 58px; height: 58px; }
+      .right-page { min-height: 370px; padding: 22px 20px 19px; }
+      .photo-frame { min-height: 245px; }
+      .controls { align-items: flex-start; }
+      .control-hint { max-width: 120px; line-height: 1.6; }
+      .nav-button { min-width: 86px; padding: 10px 11px; font-size: 12px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand"><span class="brand-mark" aria-hidden="true">旅</span><span>一份小小的远行</span></div>
+      <div class="edition">BIRTHDAY EDITION &nbsp;·&nbsp; NO. 001</div>
+    </header>
+
+    <main>
+      <div class="book-wrap">
+        <section class="book" id="book" aria-label="日本旅行纪念护照">
+          <div class="cover" aria-label="旅行护照封面">
+            <div class="cover-top">PRC · 旅行纪念</div>
+            <div class="cover-emblem" aria-hidden="true">旅</div>
+            <h1 class="cover-title">旅行护照</h1>
+            <p class="cover-en">TRAVEL PASSPORT</p>
+            <hr class="cover-rule">
+            <p class="cover-subtitle">下一站：日本</p>
+            <div class="cover-note">纪念册 · 非官方证件</div>
+          </div>
+
+          <div class="spread" aria-live="polite">
+            <section class="paper left-page" aria-label="旅程寄语与目录">
+              <span class="page-kicker">A little wish for you</span>
+              <div class="stamp" aria-hidden="true">HAPPY<br>BIRTHDAY<br>✳</div>
+              <h2 class="dedication">写给</h2>
+              <input class="name-input" id="friend-name" type="text" maxlength="24" placeholder="亲爱的你" aria-label="收礼人的名字">
+              <p class="dedication-copy" id="dedication-copy">愿新的一岁，有好多值得期待的风景，也有说走就走的勇气。<br>生日快乐！这本小护照，先带你去日本散散心。</p>
+              <ol class="route" aria-label="日本旅程目录">
+                <li><span class="route-no">01</span><span>东京 · 城市漫游</span><span class="route-state">TOKYO</span></li>
+                <li><span class="route-no">02</span><span>富士山 · 山与湖</span><span class="route-state">FUJI</span></li>
+                <li><span class="route-no">03</span><span>大阪 · 好吃好逛</span><span class="route-state">OSAKA</span></li>
+                <li><span class="route-no">04</span><span>北海道 · 雪与花</span><span class="route-state">HOKKAIDO</span></li>
+              </ol>
+            </section>
+            <section class="paper right-page" aria-label="目的地风景">
+              <div class="scene-head">
+                <h2 class="scene-title" id="scene-title">生日限定签证</h2>
+                <span class="scene-index" id="scene-index">VISA · 01</span>
+              </div>
+              <div class="photo-frame">
+                <img class="scene-photo" id="scene-photo" alt="日本旅行风景">
+                <div class="photo-caption" id="photo-caption">有效期：新的一整岁</div>
+              </div>
+              <div class="scene-foot">
+                <span class="scene-note" id="scene-note">签发给：全世界最棒的你</span>
+                <span class="mini-stamp" id="mini-stamp">祝你快乐</span>
+              </div>
+            </section>
+          </div>
+        </section>
+
+        <nav class="controls" aria-label="翻页控制">
+          <span class="control-hint" id="control-hint">点一下，开启你的日本小旅行</span>
+          <div class="control-actions">
+            <button class="nav-button" id="prev-button" type="button" disabled>‹ 上一页</button>
+            <button class="nav-button next-button" id="next-button" type="button" aria-label="打开护照">打开护照 &nbsp;›</button>
+          </div>
+        </nav>
+      </div>
+    </main>
+
+    <footer class="bottom-bar">
+      <span>一场想象中的旅行 · 送给特别的你</span>
+      <span>风景摄影：Unsplash · 图片已下载，可离线浏览</span>
+    </footer>
+  </div>
+
+  <script>
+    const destinations = [
+      {
+        title: "生日限定签证",
+        index: "VISA · 01",
+        caption: "有效期：新的一整岁",
+        note: "签发给：全世界最棒的你",
+        stamp: "祝你快乐",
+        image: "assets/kyoto-visa.jpg",
+        alt: "京都街巷与传统日式建筑",
+        position: "center 55%"
+      },
+      {
+        title: "东京 · 不眠的街",
+        index: "TOKYO · 02",
+        caption: "在霓虹与晚风里散步",
+        note: "建议行程：迷路也没关系",
+        stamp: "东京入境",
+        image: "assets/tokyo.jpg",
+        alt: "东京城市街景与夜色",
+        position: "center"
+      },
+      {
+        title: "富士山 · 山与湖",
+        index: "FUJI · 03",
+        caption: "把烦恼交给山风",
+        note: "今日天气：适合许愿",
+        stamp: "心愿已收",
+        image: "assets/fuji.jpg",
+        alt: "富士山与湖面风景",
+        position: "center 52%"
+      },
+      {
+        title: "大阪 · 慢慢逛吃",
+        index: "OSAKA · 04",
+        caption: "快乐的事，要吃饱再说",
+        note: "推荐：章鱼烧与一份好心情",
+        stamp: "美味认证",
+        image: "assets/osaka.jpg",
+        alt: "大阪城市与日本街景",
+        position: "center"
+      },
+      {
+        title: "北海道 · 雪与花",
+        index: "HOKKAIDO · 05",
+        caption: "下一场雪，和下一场花",
+        note: "愿每个季节都有惊喜",
+        stamp: "四季平安",
+        image: "assets/hokkaido.jpg",
+        alt: "冬日雪山与星空",
+        position: "center"
+      },
+      {
+        title: "京都 · 把时间放慢",
+        index: "KYOTO · 06",
+        caption: "走进小巷，遇见旧时光",
+        note: "把喜欢的风景都收进口袋",
+        stamp: "旅途愉快",
+        image: "assets/kyoto.jpg",
+        alt: "京都传统街道与寺院",
+        position: "center"
+      },
+      {
+        title: "下一站，由你决定",
+        index: "TO BE CONTINUED · 07",
+        caption: "愿我们都一直有期待",
+        note: "生日快乐。以后也一起去看世界吧。",
+        stamp: "未完待续",
+        image: "assets/next-stop.jpg",
+        alt: "夜空下的日本风景",
+        position: "center"
+      }
+    ];
+
+    const book = document.querySelector("#book");
+    const prevButton = document.querySelector("#prev-button");
+    const nextButton = document.querySelector("#next-button");
+    const hint = document.querySelector("#control-hint");
+    const photo = document.querySelector("#scene-photo");
+    const nameInput = document.querySelector("#friend-name");
+    let activePage = -1;
+    let isTurning = false;
+
+    const savedName = localStorage.getItem("birthday-passport-name");
+    if (savedName) nameInput.value = savedName;
+    nameInput.addEventListener("input", () => {
+      localStorage.setItem("birthday-passport-name", nameInput.value);
+    });
+
+    function renderPage() {
+      const page = destinations[activePage];
+      document.querySelector("#scene-title").textContent = page.title;
+      document.querySelector("#scene-index").textContent = page.index;
+      document.querySelector("#photo-caption").textContent = page.caption;
+      document.querySelector("#scene-note").textContent = page.note;
+      document.querySelector("#mini-stamp").textContent = page.stamp;
+      photo.alt = page.alt;
+      photo.style.objectPosition = page.position;
+      photo.src = page.image;
+      prevButton.disabled = false;
+      nextButton.textContent = activePage === destinations.length - 1 ? "回到封面  ›" : "下一页  ›";
+      nextButton.setAttribute("aria-label", activePage === destinations.length - 1 ? "回到封面" : "下一页");
+      hint.textContent = `${String(activePage + 1).padStart(2, "0")} / ${String(destinations.length).padStart(2, "0")}　·　也可用键盘方向键翻页`;
+    }
+
+    function turn(direction) {
+      if (isTurning) return;
+      if (activePage === -1 && direction > 0) {
+        activePage = 0;
+        book.classList.add("is-open");
+        renderPage();
+        return;
+      }
+      if (activePage === destinations.length - 1 && direction > 0) {
+        activePage = -1;
+        book.classList.remove("is-open");
+        prevButton.disabled = true;
+        nextButton.textContent = "打开护照  ›";
+        nextButton.setAttribute("aria-label", "打开护照");
+        hint.textContent = "点一下，开启你的日本小旅行";
+        return;
+      }
+      const nextPage = activePage + direction;
+      if (nextPage < 0) {
+        activePage = -1;
+        book.classList.remove("is-open");
+        prevButton.disabled = true;
+        nextButton.textContent = "打开护照  ›";
+        nextButton.setAttribute("aria-label", "打开护照");
+        hint.textContent = "点一下，开启你的日本小旅行";
+        return;
+      }
+      if (nextPage >= destinations.length) return;
+      isTurning = true;
+      book.classList.add("turning");
+      window.setTimeout(() => {
+        activePage = nextPage;
+        renderPage();
+        book.classList.remove("turning");
+        isTurning = false;
+      }, 260);
+    }
+
+    prevButton.addEventListener("click", () => turn(-1));
+    nextButton.addEventListener("click", () => turn(1));
+    document.addEventListener("keydown", (event) => {
+      if (event.target instanceof HTMLInputElement) return;
+      if (event.key === "ArrowRight") turn(1);
+      if (event.key === "ArrowLeft") turn(-1);
+    });
+  </script>
+</body>
+</html>
