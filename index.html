@@ -132,6 +132,14 @@
       object-fit: contain;
     }
 
+    .cover-copy {
+      position: relative;
+      top: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
     .cover-country {
       position: relative;
       z-index: 1;
@@ -497,14 +505,16 @@
               <div class="cover-emblem" aria-hidden="true">
                 <img src="assets/l-crest.png" alt="">
               </div>
-              <p class="cover-country">LIA第二支部</p>
-              <p class="cover-country-en">LIA SECOND BRANCH</p>
-              <h1 class="cover-title"><span>护</span><span>照</span></h1>
-              <p class="cover-en">PASSPORT</p>
-              <svg class="cover-chip" viewBox="0 0 36 26" aria-hidden="true">
-                <rect x="2" y="2" width="32" height="22" rx="3"/>
-                <path d="M2 9h8l4 4-4 4H2m32-8h-8l-4 4 4 4h8"/>
-              </svg>
+              <div class="cover-copy">
+                <p class="cover-country">LIA第二支部</p>
+                <p class="cover-country-en">LIA SECOND BRANCH</p>
+                <h1 class="cover-title"><span>护</span><span>照</span></h1>
+                <p class="cover-en">PASSPORT</p>
+                <svg class="cover-chip" viewBox="0 0 36 26" aria-hidden="true">
+                  <rect x="2" y="2" width="32" height="22" rx="3"/>
+                  <path d="M2 9h8l4 4-4 4H2m32-8h-8l-4 4 4 4h8"/>
+                </svg>
+              </div>
             </div>
 
             <div class="spread" aria-live="polite">
